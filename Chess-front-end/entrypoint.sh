@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export REACT_APP_POD=$HOSTNAME
+export REACT_APP_SERVER_HOST=$BACKEND_SERVICE_HOST
+export REACT_APP_SERVER_PORT=$BACKEND_SERVICE_PORT
+
+
+npm run build && serve -s build

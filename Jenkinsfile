@@ -28,6 +28,11 @@ pipeline {
                  - name: docker-socket
                    hostPath:
                      path: /var/run/docker.sock
+                tolerations:
+                    - key: "tool"
+                      operator: "Equal"
+                      value: "chess"
+                      effect: "NoSchedule"
                 affinity:
                   nodeAffinity:
                     requiredDuringSchedulingIgnoredDuringExecution:
@@ -89,6 +94,19 @@ pipeline {
             }
             
         }
+    
+    stage('Deploy'){
+      agent{
+          label 'home'
+      }
+       steps {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                 sh '~/kubectl rollout restart deployment deploy-frontend -n kube-tool'
+                 sh '~/kubectl rollout restart deployment deploy-backend -n kube-tool'
+             }
+            } 
     }
     
-  }
+  }}
+
+

@@ -1,2 +1,1 @@
-Automate mongo
-Remove aws cli from backend and use instance profile instead
+modify manifests in this repo to match whats on the cloud

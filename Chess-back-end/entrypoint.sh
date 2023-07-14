@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "region = ${AWS_REGION}">>/root/.aws/config
-echo "output = json">>/root/.aws/config
-echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}">>/root/.aws/credentials
-echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}">>/root/.aws/credentials
+#echo "output = json">>/root/.aws/config
+#echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}">>/root/.aws/credentials
+#echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}">>/root/.aws/credentials
 # Define an array of parameter names
 parameter_names=("JWT_SECRET" "MESSAGE_KEY")
 
@@ -23,3 +23,4 @@ for parameter_name in "${parameter_names[@]}"; do
 done
 
 npm install && node server.js
+71327e84f8c0

@@ -16,7 +16,9 @@ for parameter_name in "${parameter_names[@]}"; do
     sleep 1
     value=$(aws ssm get-parameter --name "$parameter_name" --query "Parameter.Value" --output text)
   done
-
+  # external ip 
+  export CLIENT_URL="$(TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/public-ipv4):30080"
+                                                                                                                 
   # Assign the parameter value to a variable
   export "$parameter_name=$value"
   echo "$parameter_name: ${!parameter_name}"

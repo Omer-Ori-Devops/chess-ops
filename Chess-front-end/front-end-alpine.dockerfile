@@ -13,6 +13,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 RUN apk update 
 RUN apk add bash
+RUN apk add curl
 RUN npm install 
 RUN npm install -g serve
 
